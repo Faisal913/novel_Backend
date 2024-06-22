@@ -35,8 +35,8 @@ class ChapterHandler {
 
   async getChapterByIdHandler(request, h) {
     try {
-      const { id } = request.params;
-      const chapter = await this._service.getChapterById(id);
+      const { no_chapter, id_novel } = request.params;
+      const chapter = await this._service.getChapterById(no_chapter, id_novel);
 
       return {
         status: 'success',
@@ -51,9 +51,8 @@ class ChapterHandler {
 
   async getChaptersHandler(request, h) {
     try {
-      console.log('Calling getChapters...');
-      const chapters = await this._service.getChapters();
-      console.log('Chapters retrieved:', chapters);
+      const { novelId } = request.params; // Ubah parameter agar sesuai dengan rute baru
+      const chapters = await this._service.getChapters(novelId);
       return {
         status: 'success',
         data: {

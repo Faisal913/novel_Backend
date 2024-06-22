@@ -11,9 +11,6 @@ const routes = (handler) => [
       method: 'GET',
       path: '/novel',
       handler: handler.getNovelsHandler,
-      options: {
-        auth:"jwt",
-      },
     },
     {
       method: 'GET',

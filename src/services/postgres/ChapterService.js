@@ -28,9 +28,10 @@ class ChapterService {
     }
   }
 
-  async getChapters() {
+  async getChapters(novelId) { 
     const query = {
-      text: 'SELECT * FROM chapter',
+      text: 'SELECT * FROM chapter WHERE id_novel = $1', 
+      values: [novelId],
     };
 
     try {
@@ -43,10 +44,10 @@ class ChapterService {
     }
   }
 
-  async getChapterById(id) {
+  async getChapterById(no_chapter, id_novel) {
     const query = {
-      text: 'SELECT * FROM chapter WHERE id_chapter = $1',
-      values: [id],
+      text: 'SELECT * FROM chapter WHERE no_chapter = $1 AND id_novel = $2',
+      values: [no_chapter, id_novel],
     };
 
     try {

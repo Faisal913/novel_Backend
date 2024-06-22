@@ -22,12 +22,13 @@ class AuthenticationsHandler {
       const accessToken = this._tokenManager.generateAccessToken({ id });
       const refreshToken = this._tokenManager.generateRefreshToken({ id });
 
-      await this._authenticationsService.addToken(accessToken, refreshToken); // Ubah addRefreshToken menjadi addToken
+      await this._authenticationsService.addToken({ id, accessToken, refreshToken });
 
       const response = h.response({
         status: 'success',
         message: 'Authentication berhasil ditambahkan',
         data: {
+          id_admin: id,
           accessToken,
           refreshToken,
         },
@@ -96,7 +97,7 @@ class AuthenticationsHandler {
 
       const { refreshToken } = request.payload;
       await this._authenticationsService.verifyRefreshToken(refreshToken);
-      await this._authenticationsService.deleteToken(refreshToken); // Ubah deleteRefreshToken menjadi deleteToken
+      await this._authenticationsService.deleteToken(refreshToken);
 
       return {
         status: 'success',

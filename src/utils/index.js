@@ -19,15 +19,15 @@ const mapDBToModelGenre = ({
     id_admin,
     id_genre,
   }) => ({
-    id: id_novel,
+    id_novel: id_novel,
     judul: judul_novel,
     deskripsi: deskripsi,
     pengarang: pengarang,
     penerbit: penerbit,
-    tanggalRilis: tgl_rilis,
+    tgl_rilis: tgl_rilis,
     gambar: img,
-    idAdmin: id_admin,
-    idGenre: id_genre,
+    id_admin: id_admin,
+    id_genre: id_genre,
   });
   
   const mapDBToModelChapter = ({
