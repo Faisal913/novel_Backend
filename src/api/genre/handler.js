@@ -8,6 +8,7 @@ class GenreHandler {
     this.postGenreHandler = this.postGenreHandler.bind(this);
     this.getGenresHandler = this.getGenresHandler.bind(this);
     this.getGenreByIdHandler = this.getGenreByIdHandler.bind(this);
+    this.getNovelByGenreHandler = this.getNovelByGenreHandler.bind(this);
     this.putGenreByIdHandler = this.putGenreByIdHandler.bind(this);
     this.deleteGenreByIdHandler = this.deleteGenreByIdHandler.bind(this);
   }
@@ -57,6 +58,41 @@ class GenreHandler {
     } catch (error) {
       return this._handleError(error, h);
     }
+  }
+
+  async getNovelByGenreHandler(request, h) {
+    try {
+      const { id } = request.params;
+      const novel = await this._service.getNovelByGenre(id);
+
+      return {
+        status: 'success',
+        data: {
+          novel,
+        },
+      };
+    } catch (error) {
+      return this._handleError(error, h);
+    }
+  }
+
+  _handleError(error, h) {
+    if (error instanceof ClientError) {
+      const response = h.response({
+        status: 'fail',
+        message: error.message,
+      });
+      response.code(error.statusCode);
+      return response;
+    }
+
+    const response = h.response({
+      status: 'error',
+      message: 'Maaf, terjadi kegagalan pada server kami.',
+    });
+    response.code(500);
+    console.error(error);
+    return response;
   }
 
   async putGenreByIdHandler(request, h) {

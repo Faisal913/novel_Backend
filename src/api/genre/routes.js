@@ -18,6 +18,11 @@ const routes = (handler) => [
       handler: handler.getGenreByIdHandler,
     },
     {
+      method: 'GET',
+      path: '/genre/{id}/novel',
+      handler: handler.getNovelByGenreHandler,
+    },
+    {
       method: 'PUT',
       path: '/genre/{id}',
       handler: handler.putGenreByIdHandler,

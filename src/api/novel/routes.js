@@ -10,7 +10,7 @@ const routes = (handler) => [
     {
       method: 'GET',
       path: '/novel',
-      handler: handler.getNovelsHandler,
+      handler: handler.getNovelHandler,
     },
     {
       method: 'GET',

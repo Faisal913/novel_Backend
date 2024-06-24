@@ -8,6 +8,10 @@ exports.up = (pgm) => {
       type: 'TEXT',
       notNull: true,
     },
+    id_admin: {
+      type: 'INTEGER',
+      notNull: true,
+    },
     refresh_token: {
       type: 'TEXT',
       notNull: true,

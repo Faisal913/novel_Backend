@@ -6,7 +6,7 @@ class NovelHandler {
     this._validator = validator;
 
     this.postNovelHandler = this.postNovelHandler.bind(this);
-    this.getNovelsHandler = this.getNovelsHandler.bind(this);
+    this.getNovelHandler = this.getNovelHandler.bind(this);
     this.getNovelByIdHandler = this.getNovelByIdHandler.bind(this);
     this.putNovelByIdHandler = this.putNovelByIdHandler.bind(this);
     this.deleteNovelByIdHandler = this.deleteNovelByIdHandler.bind(this);
@@ -33,12 +33,12 @@ class NovelHandler {
     }
   }
 
-  async getNovelsHandler() {
-    const novels = await this._service.getNovels();
+  async getNovelHandler() {
+    const novel = await this._service.getNovel();
     return {
       status: 'success',
       data: {
-        novels,
+        novel,
       },
     };
   }

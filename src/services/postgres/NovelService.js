@@ -28,7 +28,7 @@ class NovelService {
     }
   }
 
-  async getNovels() {
+  async getNovel() {
     const query = {
       text: 'SELECT * FROM novel',
     };

@@ -49,6 +49,27 @@ class GenreService {
     }
   }
 
+  async getNovelByGenre(genreId) {
+    const query = {
+      text: 'SELECT * FROM novel WHERE id_genre = $1',
+      values: [genreId],
+    };
+
+    try {
+      console.log('Executing query:', query);
+      const result = await this._pool.query(query);
+
+      if (!result.rows.length) {
+        throw new NotFoundError('Tidak ada novel ditemukan untuk genre ini');
+      }
+
+      return result.rows;
+    } catch (error) {
+      console.error('Error executing query:', error);
+      throw error;
+    }
+  }
+
   async editGenreById(id, { nama_genre, id_admin }) {
     const query = {
       text: 'UPDATE genre SET nama_genre = $1, id_admin = $2 WHERE id_genre = $3 RETURNING id_genre',
